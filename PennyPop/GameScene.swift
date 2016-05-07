@@ -21,13 +21,6 @@ class GameScene: SKScene {
         addMonster()
         addMonster()
         addMonster()
-        
-//        runAction(SKAction.repeatActionForever(
-//            SKAction.sequence([
-//                SKAction.runBlock(addMonster),
-//                SKAction.waitForDuration(0.4)
-//                ])
-//            ))
     }
     
     
