@@ -11,8 +11,8 @@ import SpriteKit
 struct PhysicsCategory {
     static let None      : UInt32 = 0
     static let All       : UInt32 = UInt32.max
-    static let Monster   : UInt32 = 0b1       // 1
-    static let Projectile: UInt32 = 0b10      // 2
+    static let Monster   : UInt32 = 0b1
+    static let Projectile: UInt32 = 0b10
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
@@ -84,7 +84,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monster.physicsBody?.categoryBitMask = PhysicsCategory.Monster
         monster.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
         monster.physicsBody?.collisionBitMask = PhysicsCategory.None
-        
         var randY = CGFloat(0.5)
         while (randY > CGFloat(0.45) && randY < CGFloat(0.55)) {
             randY = random(min: 0.1, max: 0.9)
@@ -93,10 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         while (randX > CGFloat(0.45) && randX < CGFloat(0.55)) {
             randX = random(min: 0.1, max: 0.9)
         }
-        
         monster.position = CGPoint(x: randX * size.width, y: randY * size.height)
-        
-        // Add the monster to the scene
         addChild(monster)
         
     }
@@ -120,10 +116,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(projectile)
         let direction = offset.normalized()
         let shootAmount = direction * 1000
-        let realDest = shootAmount + projectile.position
-        let actionMove = SKAction.moveTo(realDest, duration: 2.0)
+        let realDest1 = shootAmount / 80 + player.position
+        let realDest2 = shootAmount / 40 + player.position
+        let realDest3 = shootAmount / 40 * 2 + player.position
+        let realDest4 = shootAmount / 40 * 3 + player.position
+        let realDest5 = shootAmount / 40 * 4 + player.position
+        let realDest6 = shootAmount / 40 * 5 + player.position
+        let realDest7 = shootAmount / 40 * 6 + player.position
+        let realDest8 = shootAmount / 40 * 7 + player.position
+        let realDest9 = shootAmount / 40 * 8 + player.position
+        let realDest10 = shootAmount + player.position
+        let actionMove1 = SKAction.moveTo(realDest1, duration: 0.7)
+        let actionMove2 = SKAction.moveTo(realDest2, duration: 0.6)
+        let actionMove3 = SKAction.moveTo(realDest3, duration: 0.5)
+        let actionMove4 = SKAction.moveTo(realDest4, duration: 0.4)
+        let actionMove5 = SKAction.moveTo(realDest5, duration: 0.3)
+        let actionMove6 = SKAction.moveTo(realDest6, duration: 0.2)
+        let actionMove7 = SKAction.moveTo(realDest7, duration: 0.1)
+        let actionMove8 = SKAction.moveTo(realDest8, duration: 0.1)
+        let actionMove9 = SKAction.moveTo(realDest9, duration: 0.05)
+        let actionMove10 = SKAction.moveTo(realDest10, duration: 0.01)
+        
         let actionMoveDone = SKAction.removeFromParent()
-        projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
+        projectile.runAction(SKAction.sequence([actionMove1, actionMove2, actionMove3, actionMove4, actionMove5, actionMove6, actionMove7, actionMove8, actionMove9, actionMove10, actionMoveDone]))
     
     }
     
@@ -149,7 +164,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func projectileDidCollideWithMonster(projectile:SKSpriteNode, monster:SKSpriteNode) {
         projectile.removeFromParent()
-//        monster.removeFromParent()
         bleed(monster)
     }
     
