@@ -142,26 +142,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     }
     
-//        let tot = 10
-//        
-//        animateTouch(1, tot: tot, projectile: projectile, position: projectile.position, shootAmount: shootAmount)
-//        
-//    }
-//    
-//    func animateTouch(i: Int, tot: Int, projectile: SKSpriteNode, position: CGPoint, shootAmount: CGPoint) {
-//        if (i == tot + 1) {
-//            SKAction.removeFromParent()
-//            return
-//        }
-//        let realDest = (shootAmount / CGFloat(tot)) + projectile.position
-//        print(realDest)
-//        let func2 = SKAction.runBlock({
-//            self.animateTouch(i+1, tot: tot, projectile: projectile, position: realDest, shootAmount: shootAmount)
-//        })
-//        let actionMove = SKAction.moveTo(realDest, duration: (2.0 / Double(i / 2)))
-//        projectile.runAction(SKAction.sequence([actionMove, func2]))
-//    }
-    
     func projectileDidCollideWithMonster(projectile:SKSpriteNode, monster:SKSpriteNode) {
         projectile.removeFromParent()
         bleed(monster)
